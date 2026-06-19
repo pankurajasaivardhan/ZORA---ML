@@ -1,0 +1,14 @@
+{
+    "best_model": "XGBoost",
+    "rmse": 76.53068854428595,
+    "mae": 66.16949462890625,
+    "r2": -2.391655445098877,
+    "nasa_score": 237917.76700489304,
+    "failures_caught": 25,
+    "failures_missed": 0,
+    "false_alarms": 75,
+    "business_value": 875000,
+    "alert_threshold": 30,
+    "n_test_engines": 100,
+    "feature_count": 155
+}

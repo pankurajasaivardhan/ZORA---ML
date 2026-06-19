@@ -1,0 +1,18 @@
+{
+    "best_heart_model": "SVM",
+    "heart_auc_roc": 1.0,
+    "heart_threshold": 0.62,
+    "heart_f1": 1.0,
+    "heart_recall": 1.0,
+    "heart_business_value": 3150000,
+    "best_diabetes_model": "GradientBoosting",
+    "diabetes_auc_roc": 0.819259,
+    "diabetes_threshold": 0.01,
+    "diabetes_f1": 0.540816,
+    "diabetes_recall": 0.981481,
+    "diabetes_business_value": 571500,
+    "heart_feature_count": 23,
+    "diabetes_feature_count": 20,
+    "heart_test_size": 205,
+    "diabetes_test_size": 154
+}

@@ -1,0 +1,18 @@
+{
+    "best_model": "LightGBM",
+    "optimal_threshold": 0.4,
+    "auc_roc": 0.686364,
+    "avg_precision": 0.258846,
+    "f1": 0.252477,
+    "precision": 0.144552,
+    "recall": 0.996422,
+    "mcc": 0.064397,
+    "defaults_caught": 63212,
+    "defaults_missed": 227,
+    "false_alarms": 374083,
+    "business_value": 315249500,
+    "test_size": 451432,
+    "test_defaults": 63439,
+    "feature_count": 42,
+    "note": "Threshold adjusted to 0.40 for balanced precision-recall tradeoff"
+}

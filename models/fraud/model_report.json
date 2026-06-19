@@ -1,0 +1,17 @@
+{
+    "best_model": "XGBoost",
+    "optimal_threshold": 0.01,
+    "auc_roc": 0.984543,
+    "avg_precision": 0.765211,
+    "f1": 0.322751,
+    "precision": 0.200658,
+    "recall": 0.824324,
+    "mcc": 0.405411,
+    "fraud_caught": 61,
+    "fraud_missed": 13,
+    "false_alarms": 243,
+    "business_value": 3270,
+    "test_transactions": 56746,
+    "test_fraud_total": 74,
+    "feature_count": 56
+}
