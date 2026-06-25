@@ -74,7 +74,8 @@ def health_check():
         ("loan_default", get_loan_predictor),
         ("health_risk", get_health_predictor),
         ("equipment_failure", get_equipment_predictor),
-        ("network_anomaly", get_network_predictor)
+        ("network_anomaly", get_network_predictor),
+        ("customer_churn", get_churn_predictor)
     ]:
         try:
             loader()
@@ -84,7 +85,7 @@ def health_check():
     modules.update({
         "equipment_failure": modules.get("equipment_failure", False),
         "network_anomaly": modules.get("network_anomaly", False),
-        "customer_churn": False,
+        "customer_churn": modules.get("customer_churn", False),
         "stock_risk": False
     })
     return HealthResponse(status="operational", version="1.0.0", modules_loaded=modules)
@@ -194,4 +195,18 @@ def predict_network(request: NetworkTrafficRequest, predictor=Depends(get_networ
         return NetworkAnomalyResponse(**result)
     except Exception as e:
         logger.error(f"Network error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+from schemas import ChurnRequest, ChurnResponse
+from dependencies import get_churn_predictor
+
+
+@router.post("/predict/customer-churn", response_model=ChurnResponse, tags=["Customer Churn"])
+def predict_churn(request: ChurnRequest, predictor=Depends(get_churn_predictor)):
+    try:
+        result = predictor.predict(request.dict())
+        return ChurnResponse(**result)
+    except Exception as e:
+        logger.error(f"Churn error: {e}")
         raise HTTPException(status_code=500, detail=str(e))

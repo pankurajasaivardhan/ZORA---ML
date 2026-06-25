@@ -104,3 +104,15 @@ def get_network_predictor():
         _network_predictor = mod.NetworkAnomalyPredictor()
         _network_predictor.load()
     return _network_predictor
+
+_churn_predictor = None
+
+
+def get_churn_predictor():
+    global _churn_predictor
+    if _churn_predictor is None:
+        logger.info("Loading churn predictor")
+        mod = _load_module("churn", BASE_DIR / "modules" / "customer_churn", "predictor.py")
+        _churn_predictor = mod.ChurnPredictor()
+        _churn_predictor.load()
+    return _churn_predictor

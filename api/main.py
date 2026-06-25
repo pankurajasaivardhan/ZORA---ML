@@ -30,13 +30,14 @@ logger = get_logger_safe("main")
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("SENTINEL-ML API starting up")
-    from dependencies import get_fraud_predictor, get_loan_predictor, get_health_predictor, get_equipment_predictor, get_network_predictor
+    from dependencies import get_fraud_predictor, get_loan_predictor, get_health_predictor, get_equipment_predictor, get_network_predictor, get_churn_predictor
     for name, loader in [
         ("Fraud", get_fraud_predictor),
         ("Loan", get_loan_predictor),
         ("Health", get_health_predictor),
         ("Equipment", get_equipment_predictor),
-        ("Network", get_network_predictor)
+        ("Network", get_network_predictor),
+        ("Churn", get_churn_predictor)
     ]:
         try:
             loader()
