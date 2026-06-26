@@ -108,7 +108,7 @@ function Dashboard() {
           </div>
           <div className="card-body">
             {report && ["auc_roc","avg_precision","f1","recall","precision","mcc"].map(k => (
-              <MetricRow key={k} name={k.replace(/_/g," ").toUpperCase()} value={report[k]?.toFixed(4)} pct={Math.abs(report[k])} />
+              <MetricRow key={k} name={k.replace(/_/g," ").toUpperCase()} value={report[k] != null ? report[k].toFixed(4) : "N/A"} pct={report[k] ? Math.abs(report[k]) : 0} />
             ))}
           </div>
         </div>
@@ -125,7 +125,7 @@ function Dashboard() {
                 ].map(i => (
                   <div key={i.l} style={{ background:"var(--gray-50)", borderRadius:8, padding:14, border:"1px solid var(--border)" }}>
                     <div style={{ fontSize:10, color:"var(--gray-400)", marginBottom:6, fontWeight:700, textTransform:"uppercase", letterSpacing:1 }}>{i.l}</div>
-                    <div style={{ fontSize:28, fontWeight:700, color:i.c, fontFamily:"'DM Mono',monospace" }}>{i.v?.toLocaleString()}</div>
+                    <div style={{ fontSize:28, fontWeight:700, color:i.c, fontFamily:"'DM Mono',monospace" }}>{i.v != null ? i.v.toLocaleString() : "N/A"}</div>
                     <div style={{ fontSize:11, color:"var(--gray-500)", marginTop:4 }}>{i.s}</div>
                   </div>
                 ))}
@@ -187,7 +187,7 @@ function FraudModule() {
   return (
     <div>
       <div className="section-title">Fraud Detection</div>
-      <div className="section-sub">Real-time transaction risk · XGBoost + LightGBM + Isolation Forest · AUC {report?.auc_roc?.toFixed(4)}</div>
+      <div className="section-sub">Real-time transaction risk · XGBoost + LightGBM + Isolation Forest · AUC {report && report.auc_roc ? report.auc_roc.toFixed(4) : "..."}</div>
       <div className="grid-2" style={{ alignItems:"start" }}>
         <div className="card">
           <div className="card-header">
@@ -247,7 +247,7 @@ function FraudModule() {
             <div className="card-header"><div className="card-title">Model Metrics</div><span className="pill pill-green">XGBoost</span></div>
             <div className="card-body">
               {report && [["AUC-ROC",report.auc_roc],["Avg Precision",report.avg_precision],["F1 Score",report.f1],["Recall",report.recall]].map(([n,v]) => (
-                <MetricRow key={n} name={n} value={v?.toFixed(4)} pct={v} />
+                <MetricRow key={n} name={n} value={v != null ? v.toFixed(4) : "N/A"} pct={v || 0} />
               ))}
             </div>
           </div>
@@ -478,7 +478,7 @@ function EquipmentModule() {
               <div style={{ fontSize:12, fontWeight:700, color:"var(--gray-600)", marginBottom:8 }}>Sensor Summary</div>
               <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:6 }}>
                 {["s4","s11","s14","s15","s20","s21"].map(s => (
-                  <div key={s} style={{ fontSize:11, color:"var(--gray-500)" }}><span style={{ fontWeight:700, color:"var(--gray-700)" }}>{s}: </span>{readings[0]?.[s]?.toFixed(2)||"N/A"}</div>
+                  <div key={s} style={{ fontSize:11, color:"var(--gray-500)" }}><span style={{ fontWeight:700, color:"var(--gray-700)" }}>{s}: </span>{readings[0] && readings[0][s] != null ? readings[0][s].toFixed(2) : "N/A"}</div>
                 ))}
               </div>
             </div>
